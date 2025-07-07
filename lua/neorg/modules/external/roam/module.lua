@@ -371,6 +371,11 @@ module.public = {
 								end
 							end
 							vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+
+							vim.cmd("write")
+							vim.defer_fn(function()
+								vim.cmd("Neorg templates fload zettelkasten")
+							end, 50)
 						end)
 						return true
 					end,
@@ -470,6 +475,11 @@ module.public = {
 								end
 							end
 							vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+
+							vim.cmd("write")
+							vim.defer_fn(function()
+								vim.cmd("Neorg templates fload zettelkasten")
+							end, 50)
 						end,
 					},
 				},
@@ -531,9 +541,9 @@ module.public = {
 						vim.fn.mkdir(vault_dir, "p")
 
 						-- Create and open a new Neorg file with the generated title token
-							title_token = module.config.public.node_no_name and "" or "-" .. title_token
+						title_token = module.config.public.node_no_name and "" or "-" .. title_token
 
-							vim.cmd("edit " .. vault_dir .. os.date("%Y%m%d%H%M%S") .. title_token .. ".norg")
+						vim.cmd("edit " .. vault_dir .. os.date("%Y%m%d%H%M%S") .. title_token .. ".norg")
 						vim.cmd([[Neorg inject-metadata]])
 
 						-- Update the title in the newly created buffer
@@ -546,6 +556,11 @@ module.public = {
 							end
 						end
 						vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+
+						vim.cmd("write")
+						vim.defer_fn(function()
+							vim.cmd("Neorg templates fload zettelkasten")
+						end, 50)
 					end,
 				},
 				win = {
