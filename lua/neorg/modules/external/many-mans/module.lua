@@ -121,7 +121,7 @@ module.public = {
 				if module.config.public.code_fold then
 					combined_query = combined_query .. "\n" .. code_query .. "\n"
 				end
-				local _ = require("nvim-treesitter.parsers").get_parser_configs().norg
+				-- local _ = require("nvim-treesitter.parsers").get_parser_configs().norg
 				vim.treesitter.query.set("norg", "folds", combined_query)
 			else
 				vim.notify("Failed to find Neorg Tree-sitter query file in runtimepath.", vim.log.levels.WARN)
